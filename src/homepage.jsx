@@ -47,9 +47,8 @@ function Homepage() {
       <audio ref={hoverSoundRef} src="src/assets/hover-sound.mp3" hidden />
 
       <div className="text-container text-center">
-        <h1 className="spooky-text">INSTINCT: AN INTERACTIVE STORY</h1>
-
         <div className="menu-container">
+          <h1 className="spooky-text">INSTINCT: AN INTERACTIVE STORY</h1>
           <div className="menu">
             <button
               className="menu-button"

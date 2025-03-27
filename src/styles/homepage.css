@@ -118,7 +118,6 @@ body {
   top: 30%; /* Adjusted position */
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
 }
 
 /* Menu Buttons */
@@ -181,4 +180,115 @@ body {
   color: #ff0000;
   margin-top: 15px;
   line-height: 1.8;
+}
+@media (max-width: 1875px) {
+  .spooky-text {
+    font-size: 2.4rem;
+  }
+  .menu-button {
+    display: flex;
+    flex-direction: column; /* Stacks buttons vertically */
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 1rem;
+    color: #ff0000;
+    background: transparent;
+    border: 3px solid #ff0000;
+    padding: 15px 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 55%; /* Adjusted for better spacing */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+}
+@media (max-width: 1438px) {
+  .spooky-text {
+    font-size: 1.5rem;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 55%; /* Adjusted for better spacing */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+}
+
+@media (max-width: 822px) {
+  .spooky-text {
+    font-size: 1.5rem;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: absolute;
+    top: 55%; /* Adjusted for better spacing */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  .Headphones {
+    font-family: "Press Start 2P", cursive;
+    display: flex;
+    border: none;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background: #ff0000;
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 383px) {
+  .spooky-text {
+    font-size: 1.5rem;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: absolute;
+    top: 55%; /* Adjusted for better spacing */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  .Headphones {
+    font-family: "Press Start 2P", cursive;
+    display: flex;
+    border: none;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background: #ff0000;
+    color: white;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+  }
 }

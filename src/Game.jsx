@@ -59,7 +59,7 @@ function Game() {
     biscuitremains: "src/assets/First-badchoice.mp3",
     gameOver1: "src/assets/Watchman-Jumpscare.mp3",
     gameOver2: "src/assets/Ghost-Jumpscare.mp3",
-    win: "/assets/victory.mp3",
+    win: "src/assets/win-sound.mp3",
   };
 
   // Change background music when the scene updates
@@ -479,12 +479,19 @@ function Game() {
           )}
           {scene === "win" && (
             <>
-              <p className="game-text">
+              {" "}
+              <video autoPlay className="game-over-video">
+                <source
+                  src="src/assets/videos/win-video.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <p className="game-text-win">
                 🎉 Congratulations! You survived and reached the party!
               </p>
-
               <button
-                className="game-button"
+                className="game-button-win"
                 onMouseEnter={playHoverSound}
                 onClick={() => navigate("/")}
               >
