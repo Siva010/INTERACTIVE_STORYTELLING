@@ -13,7 +13,7 @@
   letter-spacing: 1px;
 }
 body {
-  background-image: url("src/assets/game-bg.png");
+  background-image: url("/assets/images/game-bg.png");
   background-color: rgb(54, 54, 54);
 }
 

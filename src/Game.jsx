@@ -47,19 +47,19 @@ function Game() {
   const sceneMusic = {
     start: "",
     enterApartment: "",
-    choice: "src/assets/Entry-music.mp3",
-    lift: "src/assets/First-badchoice.mp3",
-    watchman: "src/assets/Pre-watchman.mp3",
-    stairs: "src/assets/Cat-music.mp3",
-    catAngry: "src/assets/Cat-music.mp3",
-    catFinalChoice: "src/assets/Cat-music.mp3",
-    petCat: "src/assets/Pre-Ghost.mp3",
-    ghostchoice: "src/assets/Pre-Ghost.mp3",
-    ghosthappy: "src/assets/Biscuit-Ghost.mp3",
-    biscuitremains: "src/assets/First-badchoice.mp3",
-    gameOver1: "src/assets/Watchman-Jumpscare.mp3",
-    gameOver2: "src/assets/Ghost-Jumpscare.mp3",
-    win: "src/assets/win-sound.mp3",
+    choice: "/assets/sounds/Entry-music.mp3",
+    lift: " /assets/sounds/First-badchoice.mp3",
+    watchman: " /assets/sounds/Pre-watchman.mp3",
+    stairs: " /assets/sounds/Cat-music.mp3",
+    catAngry: " /assets/sounds/Cat-music.mp3",
+    catFinalChoice: " /assets/sounds/Cat-music.mp3",
+    petCat: "/assets/sounds/Pre-Ghost.mp3",
+    ghostchoice: "/assets/sounds/Pre-Ghost.mp3",
+    ghosthappy: "/assets/sounds/Biscuit-Ghost.mp3",
+    biscuitremains: "/assets/sounds/First-badchoice.mp3",
+    gameOver1: "/assets/sounds/Watchman-Jumpscare.mp3",
+    gameOver2: "/assets/sounds/Ghost-Jumpscare.mp3",
+    win: "/assets/sounds/win-sound.mp3",
   };
 
   // Change background music when the scene updates
@@ -113,7 +113,7 @@ function Game() {
         {scene === "start" && (
           <div className="game-message">
             <p className="game-text">📩 (Pawan): "Have you arrived yet?"</p>
-            <audio src="src/assets/message-sound.mp3" autoPlay hidden />
+            <audio src="/assets/sounds/message-sound.mp3" autoPlay hidden />
             <button
               className="game-button1"
               onMouseEnter={playHoverSound}
@@ -130,7 +130,7 @@ function Game() {
               📩 (Pawan): "Cool, my house is on the 3rd floor, flat 13B. I will
               be waiting outside."
             </p>
-            <audio src="src/assets/message-sound.mp3" autoPlay hidden />
+            <audio src="/assets/sounds/message-sound.mp3" autoPlay hidden />
             <button
               className="game-button1"
               onMouseEnter={playHoverSound}
@@ -151,13 +151,13 @@ function Game() {
 
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Lift.jpeg"
+                  src="/assets/images/Lift.jpeg"
                   alt="Lift"
                   className="left-image"
                 />
 
                 <img
-                  src="src/assets/images/Stairs.png"
+                  src="/assets/images/Stairs.png"
                   alt="Breaking"
                   className="right-image"
                 />
@@ -192,12 +192,12 @@ function Game() {
 
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Shouting.jpeg"
+                  src="/assets/images/Shouting.jpeg"
                   alt="Shouting"
                   className="left-image"
                 />
                 <img
-                  src="src/assets/images/Breaking.jpeg"
+                  src="/assets/images/Breaking.jpeg"
                   alt="Breaking"
                   className="right-image"
                 />
@@ -246,12 +246,12 @@ function Game() {
 
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Give-biscuit-cat.jpeg"
+                  src="/assets/images/Give-biscuit-cat.jpeg"
                   alt="give"
                   className="left-image"
                 />
                 <img
-                  src="src/assets/images/Dontgive-biscuit-cat.jpeg"
+                  src="/assets/images/Dontgive-biscuit-cat.jpeg"
                   alt="dont"
                   className="right-image"
                 />
@@ -294,12 +294,12 @@ function Game() {
               <p className="game-text">🐱 You Find Cat staring at you...</p>
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Petting-cat.jpeg"
+                  src="/assets/images/Petting-cat.jpeg"
                   alt="pet"
                   className="left-image"
                 />
                 <img
-                  src="src/assets/images/Jump-over-cat.jpeg"
+                  src="/assets/images/Jump-over-cat.jpeg"
                   alt="jump"
                   className="right-image"
                 />
@@ -330,12 +330,12 @@ function Game() {
 
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Cat-appears.jpeg"
+                  src="/assets/images/Cat-appears.jpeg"
                   alt="Lift"
                   className="left-image"
                 />
                 <img
-                  src="src/assets/images/Jump-over-cat.jpeg"
+                  src="/assets/images/Jump-over-cat.jpeg"
                   alt="Stairs"
                   className="right-image"
                 />
@@ -365,12 +365,12 @@ function Game() {
               </p>
               <div className="scene-image-container">
                 <img
-                  src="src/assets/images/Give-biscuit-ghost.jpeg"
+                  src="/assets/images/Give-biscuit-ghost.jpeg"
                   alt="Lift"
                   className="left-image"
                 />
                 <img
-                  src="src/assets/images/Dontgive-biscuit-ghost.jpeg"
+                  src="/assets/images/Dontgive-biscuit-ghost.jpeg"
                   alt="Stairs"
                   className="right-image"
                 />
@@ -438,10 +438,7 @@ function Game() {
           {scene === "gameOver1" && (
             <>
               <video autoPlay muted className="game-over-video">
-                <source
-                  src="src/assets/videos/watchman-g.mp4"
-                  type="video/mp4"
-                />
+                <source src="/assets/videos/watchman-g.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <p className="game-text-gameover">
@@ -460,7 +457,7 @@ function Game() {
             <>
               <video autoPlay className="game-over-video">
                 <source
-                  src="src/assets/videos/gameover-ghost.mp4"
+                  src="/assets/videos/gameover-ghost.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -481,10 +478,7 @@ function Game() {
             <>
               {" "}
               <video autoPlay className="game-over-video">
-                <source
-                  src="src/assets/videos/win-video.mp4"
-                  type="video/mp4"
-                />
+                <source src="/assets/videos/win-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <p className="game-text-win">

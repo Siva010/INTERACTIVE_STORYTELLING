@@ -55,7 +55,7 @@ body {
 
 /* Homepage Background */
 .homepage {
-  background-image: url("src/assets/A_dark_abandoned_apartment_bui.jpeg");
+  background-image: url("/assets/images/A_dark_abandoned_apartment_bui.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

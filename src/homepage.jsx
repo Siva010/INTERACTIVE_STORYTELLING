@@ -43,8 +43,8 @@ function Homepage() {
   return (
     <div className="homepage flex items-center justify-center h-screen">
       {/* Background & Hover Sounds */}
-      <audio ref={audioRef} src="src/assets/lobby-music.mp3" loop hidden />
-      <audio ref={hoverSoundRef} src="src/assets/hover-sound.mp3" hidden />
+      <audio ref={audioRef} src="/assets/sounds/lobby-music.mp3" loop hidden />
+      <audio ref={hoverSoundRef} src="/assets/sounds/hover-sound.mp3" hidden />
 
       <div className="text-container text-center">
         <div className="menu-container">
