@@ -28,12 +28,58 @@ body {
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  position: relative; /* Needed for pseudo-element positioning */
+  overflow: hidden; /* Hide anything shaking out of bounds */
+  transition: transform 0.1s ease-in-out; /* Smooth out shake start/end */
+}
+
+/* Vignette Pseudo-element */
+.game-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 90%);
+  opacity: 0;
+  pointer-events: none; /* Allow clicks through */
+  transition: opacity 0.3s ease-in-out;
+  z-index: 5; /* Position below transition overlay but above content */
+}
+
+/* Intense Hover Styles */
+.game-container.intense-hover-active {
+   /* Trigger animation */
+   animation: intense-shake 0.15s linear infinite alternate;
+}
+
+.game-container.intense-hover-active::before {
+  /* Make vignette visible */
+  opacity: 1;
+}
+
+/* Screen Shake Animation */
+@keyframes intense-shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  25% { transform: translate(-1px, -1px) rotate(-0.1deg); }
+  50% { transform: translate(-1px, 1px) rotate(0.1deg); }
+  75% { transform: translate(1px, -1px) rotate(0.1deg); }
+  100% { transform: translate(1px, 1px) rotate(0deg); }
 }
 
 .game-content {
   width: 100%;
   max-width: 1200px;
   text-align: center;
+  animation: fadeInFromBlack 0.5s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInFromBlack {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .message-box {
@@ -154,23 +200,28 @@ body {
   border-radius: 10px;
 }
 
-/* Scene Transition Effect */
-.scene-content {
+/* Scene Transition Overlay */
+.transition-overlay {
+  position: fixed; /* Cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000; /* Black background */
+  z-index: 100; /* Ensure it's above game content but below potential modals */
   opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: fadeToBlack 0.4s ease-in-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeToBlack {
   from {
     opacity: 0;
-    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
+
 .image-container {
   position: relative; /* This makes the tooltip position relative to this container */
   display: inline-block; /* Ensures the tooltip stays with the image */

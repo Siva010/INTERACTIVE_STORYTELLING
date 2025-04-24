@@ -1,0 +1,56 @@
+/* Loading Screen Styles */
+.loading-overlay {
+  position: fixed; /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's on top */
+  flex-direction: column;
+  color: #ff0000; /* Red text */
+  font-family: "Press Start 2P", cursive;
+}
+
+.loading-text {
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
+  margin-bottom: 20px; /* Space below text */
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Optional: Add a simple pulsing animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+/* Optional: Add a spinner animation if you prefer */
+/* 
+.spinner {
+  border: 8px solid rgba(255, 0, 0, 0.3); 
+  border-top: 8px solid #ff0000; 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+*/ 

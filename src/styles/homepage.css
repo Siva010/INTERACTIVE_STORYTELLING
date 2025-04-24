@@ -182,6 +182,16 @@ body {
   line-height: 1.8;
 }
 
+/* Style for the close button in the modal */
+.modal-close-button {
+  display: block; /* Make it a block element */
+  margin-left: auto; /* Auto margins for horizontal centering */
+  margin-right: auto;
+  margin-top: 20px; /* Add some top margin (mt-6 might be handled by Tailwind/other framework?) */
+  width: fit-content; /* Adjust width to content size */
+  /* Inherits padding, border, font etc. from .menu-button */
+}
+
 /* Responsive Design */
 @media (max-width: 1875px) {
   .spooky-text {
