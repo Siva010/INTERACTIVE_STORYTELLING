@@ -181,114 +181,120 @@ body {
   margin-top: 15px;
   line-height: 1.8;
 }
+
+/* Responsive Design */
 @media (max-width: 1875px) {
   .spooky-text {
     font-size: 2.4rem;
   }
   .menu-button {
-    display: flex;
-    flex-direction: column; /* Stacks buttons vertically */
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-    font-family: "Press Start 2P", cursive;
     font-size: 1rem;
-    color: #ff0000;
-    background: transparent;
-    border: 3px solid #ff0000;
-    padding: 15px 50px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
-    z-index: 2;
+    padding: 15px 40px;
   }
   .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: absolute;
-    top: 55%; /* Adjusted for better spacing */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    gap: 15px;
   }
 }
+
 @media (max-width: 1438px) {
   .spooky-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
+  }
+  .menu-button {
+    font-size: 0.9rem;
+    padding: 12px 35px;
   }
   .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .spooky-text {
+    font-size: 1.8rem;
+  }
+  .menu-button {
+    font-size: 0.85rem;
+    padding: 10px 30px;
+  }
+  .menu {
     gap: 10px;
-    position: absolute;
-    top: 55%; /* Adjusted for better spacing */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+  }
+  .Headphones {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 822px) {
+@media (max-width: 768px) {
   .spooky-text {
     font-size: 1.5rem;
+    padding: 0 20px;
+    top: 25%;
   }
   .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    position: absolute;
-    top: 55%; /* Adjusted for better spacing */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    gap: 15px;
+    top: 60%;
+  }
+  .menu-button {
+    font-size: 0.9rem;
+    padding: 12px 30px;
+    width: 80%;
+    max-width: 300px;
   }
   .Headphones {
-    font-family: "Press Start 2P", cursive;
-    display: flex;
-    border: none;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    background: #ff0000;
-    color: white;
     font-size: 0.8rem;
-    text-transform: uppercase;
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .modal {
+    width: 90%;
+    padding: 20px;
+    margin: 0 10px;
+  }
+  .modal-title {
+    font-size: 1.2rem;
+  }
+  .modal-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 }
 
-@media (max-width: 383px) {
+@media (max-width: 480px) {
   .spooky-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    top: 20%;
   }
   .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    position: absolute;
-    top: 55%; /* Adjusted for better spacing */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    gap: 10px;
+    top: 55%;
+  }
+  .menu-button {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    width: 90%;
   }
   .Headphones {
-    font-family: "Press Start 2P", cursive;
-    display: flex;
-    border: none;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    background: #ff0000;
-    color: white;
-    font-size: 0.5rem;
-    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 320px) {
+  .spooky-text {
+    font-size: 1rem;
+    top: 15%;
+  }
+  .menu {
+    gap: 8px;
+    top: 50%;
+  }
+  .menu-button {
+    font-size: 0.7rem;
+    padding: 8px 15px;
+  }
+  .Headphones {
+    font-size: 0.6rem;
   }
 }

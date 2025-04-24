@@ -148,38 +148,41 @@ function Game() {
               <p className="game-text">
                 🚪 You enter the apartment. How do you go up?
               </p>
-
-              <div className="scene-image-container">
-                <img
-                  src="/assets/images/Lift.jpeg"
-                  alt="Lift"
-                  className="left-image"
-                />
-
-                <img
-                  src="/assets/images/Stairs.png"
-                  alt="Breaking"
-                  className="right-image"
-                />
-              </div>
-              <div className="button-container">
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => {
-                    setBiscuitDropped(true);
-                    makeChoice("lift", true);
-                  }}
-                >
-                  🛗 Take the Lift
-                </button>
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("stairs", false)}
-                >
-                  🚶 Take the Stairs
-                </button>
+              {/* Container for choice options */}
+              <div className="choice-container"> 
+                {/* Option 1: Lift */}
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Lift.jpeg"
+                    alt="Lift"
+                    className="choice-image" // Use common class
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => {
+                      setBiscuitDropped(true);
+                      makeChoice("lift", true);
+                    }}
+                  >
+                    🛗 Take the Lift
+                  </button>
+                </div>
+                {/* Option 2: Stairs */}
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Stairs.png"
+                    alt="Stairs"
+                    className="choice-image" // Use common class
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => makeChoice("stairs", false)}
+                  >
+                    🚶 Take the Stairs
+                  </button>
+                </div>
               </div>
             </>
           )}
@@ -189,34 +192,35 @@ function Game() {
               <p className="game-text">
                 🚨 The lift stops working! What do you do?
               </p>
-
-              <div className="scene-image-container">
-                <img
-                  src="/assets/images/Shouting.jpeg"
-                  alt="Shouting"
-                  className="left-image"
-                />
-                <img
-                  src="/assets/images/Breaking.jpeg"
-                  alt="Breaking"
-                  className="right-image"
-                />
-              </div>
-              <div className="button-container">
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => setScene("watchman", true)}
-                >
-                  📣 Shout for help
-                </button>
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => setScene("biscuit-fell", false)}
-                >
-                  🏋️ Break open the lift
-                </button>
+              <div className="choice-container">
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Shouting.jpeg"
+                    alt="Shouting"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => setScene("watchman", true)}
+                  >
+                    📣 Shout for help
+                  </button>
+                </div>
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Breaking.jpeg"
+                    alt="Breaking"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => setScene("biscuit-fell", false)}
+                  >
+                    🏋️ Break open the lift
+                  </button>
+                </div>
               </div>
             </>
           )}
@@ -243,35 +247,35 @@ function Game() {
               <p className="game-text">
                 🐱 You see a **Cute Cat** on the stairs. What do you do?
               </p>
-
-              <div className="scene-image-container">
-                <img
-                  src="/assets/images/Give-biscuit-cat.jpeg"
-                  alt="give"
-                  className="left-image"
-                />
-                <img
-                  src="/assets/images/Dontgive-biscuit-cat.jpeg"
-                  alt="dont"
-                  className="right-image"
-                />
-              </div>
-
-              <div className="button-container">
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("catAngry", true)}
-                >
-                  🍪 Give Biscuit to the Cat
-                </button>
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("biscuitremains", false)}
-                >
-                  ❌ Don't Give Biscuit
-                </button>
+              <div className="choice-container">
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Give-biscuit-cat.jpeg"
+                    alt="give"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => makeChoice("catAngry", true)}
+                  >
+                    🍪 Give Biscuit to the Cat
+                  </button>
+                </div>
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Dontgive-biscuit-cat.jpeg"
+                    alt="dont"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => makeChoice("biscuitremains", false)}
+                  >
+                    ❌ Don't Give Biscuit
+                  </button>
+                </div>
               </div>
             </>
           )}
@@ -292,33 +296,35 @@ function Game() {
           {scene === "catAngry" && (
             <>
               <p className="game-text">🐱 You Find Cat staring at you...</p>
-              <div className="scene-image-container">
-                <img
-                  src="/assets/images/Petting-cat.jpeg"
-                  alt="pet"
-                  className="left-image"
-                />
-                <img
-                  src="/assets/images/Jump-over-cat.jpeg"
-                  alt="jump"
-                  className="right-image"
-                />
-              </div>
-              <div className="button-container">
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => setScene("gameOver2", true)}
-                >
-                  🐾 Pet the Cat
-                </button>
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("climb-Up", false)}
-                >
-                  🏃 Jump over the Cat
-                </button>
+              <div className="choice-container">
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Petting-cat.jpeg"
+                    alt="pet"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => setScene("gameOver2", true)}
+                  >
+                    🐾 Pet the Cat
+                  </button>
+                </div>
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Jump-over-cat.jpeg"
+                    alt="jump"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => makeChoice("climb-Up", false)}
+                  >
+                    🏃 Jump over the Cat
+                  </button>
+                </div>
               </div>
             </>
           )}
@@ -327,71 +333,74 @@ function Game() {
               <p className="game-text">
                 🐱 The cat stares at you. Do you try to pet it or move past?
               </p>
-
-              <div className="scene-image-container">
-                <img
-                  src="/assets/images/Cat-appears.jpeg"
-                  alt="Lift"
-                  className="left-image"
-                />
-                <img
-                  src="/assets/images/Jump-over-cat.jpeg"
-                  alt="Stairs"
-                  className="right-image"
-                />
-              </div>
-              <div className="button-container">
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("ghostchoice", false)}
-                >
-                  🐾 Pet the Cat
-                </button>
-                <button
-                  className="game-button"
-                  onMouseEnter={playHoverSound}
-                  onClick={() => makeChoice("climb-Up", false)}
-                >
+              <div className="choice-container">
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Cat-appears.jpeg"
+                    alt="Pet"
+                    className="choice-image"
+                  />
+                   <button
+                      className="game-button"
+                      onMouseEnter={playHoverSound}
+                      onClick={() => makeChoice("ghostchoice", false)}
+                    >
+                      🐾 Pet the Cat
+                    </button>
+                </div>
+                <div className="choice-option">
+                  <img
+                    src="/assets/images/Jump-over-cat.jpeg"
+                    alt="Jump"
+                    className="choice-image"
+                  />
+                  <button
+                    className="game-button"
+                    onMouseEnter={playHoverSound}
+                    onClick={() => makeChoice("climb-Up", false)} >
                   🏃 Jump over the Cat
                 </button>
+                </div>
               </div>
             </>
           )}
           {scene === "ghostchoice" && (
-            <>
+              <>
               <p className="game-text">
-                👻 Ghost approaches you. What do you do?
+                👻 A ghost Appears...What will you do?
               </p>
-              <div className="scene-image-container">
+              <div className="choice-container">
+                <div className="choice-option">
                 <img
                   src="/assets/images/Give-biscuit-ghost.jpeg"
-                  alt="Lift"
-                  className="left-image"
+                  alt="Give biscuit"
+                  className="choice-image"
                 />
-                <img
-                  src="/assets/images/Dontgive-biscuit-ghost.jpeg"
-                  alt="Stairs"
-                  className="right-image"
-                />
-              </div>
-              <div className="button-container">
                 <button
                   className="game-button"
                   onMouseEnter={playHoverSound}
                   onClick={() => makeChoice("ghosthappy", false)}
                 >
-                  🍪 Give the Biscuit
+                  🍪 Give Biscuit to the Ghost
                 </button>
-                <button
+                </div>
+                <div className="choice-option">
+                <img
+                  src="/assets/images/Attack-ghost.jpeg"
+                  alt="Attack ghost"
+                  className="choice-image"
+                />
+                 <button
                   className="game-button"
                   onMouseEnter={playHoverSound}
                   onClick={() => makeChoice("gameOver2", true)}
                 >
-                  🏃 Don't give biscuit
+                  ⚔️ Attack the Ghost
                 </button>
-              </div>
-            </>
+                </div>
+                </div>
+              </>
+
           )}
           {scene === "ghosthappy" && (
             <>
