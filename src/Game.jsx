@@ -75,14 +75,21 @@ function Game() {
       clearTimeout(sceneTransitionTimeoutRef.current);
     }
     // Don't play transition sound if going to start or game over/win
-    const playTransitionSound = !["start", "gameOver1", "gameOver2", "win"].includes(nextScene);
+    const playTransitionSound = ![
+      "start",
+      "gameOver1",
+      "gameOver2",
+      "win",
+    ].includes(nextScene);
 
     setScene("transitioning"); // Show transition overlay
 
     if (playTransitionSound) {
-        const transitionSound = new Audio("/assets/sounds/scene-transition.mp3"); // Add a transition sound
-        transitionSound.volume = 0.6;
-        transitionSound.play().catch(e => console.log("Transition sound error:", e));
+      const transitionSound = new Audio("/assets/sounds/scene-transition.mp3"); // Add a transition sound
+      transitionSound.volume = 0.6;
+      transitionSound
+        .play()
+        .catch((e) => console.log("Transition sound error:", e));
     }
 
     sceneTransitionTimeoutRef.current = setTimeout(() => {
@@ -106,18 +113,20 @@ function Game() {
       const newSrc = sceneMusic[scene] || "/assets/default.mp3";
       if (audioRef.current.src !== newSrc) {
         audioRef.current.src = newSrc;
-        audioRef.current.loop = !["gameOver1", "gameOver2", "win"].includes(scene); // Loop unless it's end screen
+        audioRef.current.loop = !["gameOver1", "gameOver2", "win"].includes(
+          scene
+        ); // Loop unless it's end screen
         audioRef.current.volume = scene === "win" ? 0.8 : 0.5; // Adjust volume maybe?
         audioRef.current
           .play()
           .catch((err) => console.log("Autoplay blocked:", err));
       }
     }
-     // Optionally fade out music during transition
-     else if (scene === "transitioning" && audioRef.current) {
-        // You could implement a fade out here if desired
-        // audioRef.current.pause(); // Or just pause immediately
-     }
+    // Optionally fade out music during transition
+    else if (scene === "transitioning" && audioRef.current) {
+      // You could implement a fade out here if desired
+      // audioRef.current.pause(); // Or just pause immediately
+    }
   }, [scene]);
 
   // Reset hover count on scene change
@@ -142,21 +151,24 @@ function Game() {
       const newBadChoices = badChoices + 1;
       setBadChoices(newBadChoices);
       if (newBadChoices >= 2) {
-        const gameOverScene = nextScene.includes("ghost") || nextScene.includes("cat") ? "gameOver2" : "gameOver1";
+        const gameOverScene =
+          nextScene.includes("ghost") || nextScene.includes("cat")
+            ? "gameOver2"
+            : "gameOver1";
         // Go directly to game over scene
-        setScene(gameOverScene); 
+        setScene(gameOverScene);
       } else {
         // Transition for intermediate bad choices
-        transitionToScene(nextScene); 
+        transitionToScene(nextScene);
       }
     } else {
       // Check if it's a final scene (like win)
       if (finalScenes.includes(nextScene)) {
         // Go directly to final scene
-        setScene(nextScene); 
+        setScene(nextScene);
       } else {
         // Transition for regular good choices
-        transitionToScene(nextScene); 
+        transitionToScene(nextScene);
       }
     }
   };
@@ -183,20 +195,21 @@ function Game() {
   };
 
   return (
-    <div className={`game-container ${applyIntenseEffect ? 'intense-hover-active' : ''}`}>
+    <div
+      className={`game-container ${
+        applyIntenseEffect ? "intense-hover-active" : ""
+      }`}
+    >
       {/* Dynamic Background Music */}
-      <audio ref={audioRef} hidden /> {/* Removed loop here, handled in useEffect */}
+      <audio ref={audioRef} hidden />{" "}
+      {/* Removed loop here, handled in useEffect */}
       <audio ref={hoverSoundRef} src="/assets/hover-sound.mp3" hidden />
-
-      {/* Transition Overlay */} 
-      {scene === "transitioning" && (
-          <div className="transition-overlay"></div>
-      )}
-
-      {/* Render scene content only if not transitioning */} 
+      {/* Transition Overlay */}
+      {scene === "transitioning" && <div className="transition-overlay"></div>}
+      {/* Render scene content only if not transitioning */}
       {scene !== "transitioning" && (
         <div className="game-content">
-          {/* Message scenes */} 
+          {/* Message scenes */}
           {scene === "start" && (
             <div className="game-message">
               <p className="game-text">📩 (Pawan): "Have you arrived yet?"</p>
@@ -213,8 +226,8 @@ function Game() {
           {scene === "enterApartment" && (
             <div className="game-message">
               <p className="game-text">
-                📩 (Pawan): "Cool, my house is on the 3rd floor, flat 13B. I will
-                be waiting outside."
+                📩 (Pawan): "Cool, my house is on the 3rd floor, flat 13B. I
+                will be waiting outside."
               </p>
               <audio src="/assets/sounds/message-sound.mp3" autoPlay hidden />
               <button
@@ -226,7 +239,6 @@ function Game() {
               </button>
             </div>
           )}
-
           {/* Enter Apartment choices*/}
           {/* Wrap scenes in a container that fades in? We have .scene-content */}
           <div className="scene-content">
@@ -235,9 +247,13 @@ function Game() {
                 <p className="game-text">
                   🚪 You enter the apartment. How do you go up?
                 </p>
-                <div className="choice-container"> 
+                <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Lift.jpeg" alt="Lift" className="choice-image" />
+                    <img
+                      src="/assets/images/Lift.jpeg"
+                      alt="Lift"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -251,7 +267,11 @@ function Game() {
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img src="/assets/images/Stairs.png" alt="Stairs" className="choice-image" />
+                    <img
+                      src="/assets/images/Stairs.png"
+                      alt="Stairs"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -271,18 +291,26 @@ function Game() {
                 </p>
                 <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Shouting.jpeg" alt="Shouting" className="choice-image" />
+                    <img
+                      src="/assets/images/Shouting.jpeg"
+                      alt="Shouting"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
                       onMouseLeave={handleChoiceMouseLeave}
-                      onClick={() => makeChoice("watchman", true)} // Use makeChoice for consistency
+                      onClick={() => setScene("watchman", true)} // Use makeChoice for consistency
                     >
                       📣 Shout for help
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img src="/assets/images/Breaking.jpeg" alt="Breaking" className="choice-image" />
+                    <img
+                      src="/assets/images/Breaking.jpeg"
+                      alt="Breaking"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -313,13 +341,17 @@ function Game() {
             )}
             {scene === "stairs" && (
               <>
-                 {/* ... stairs scene JSX using makeChoice ... */}
+                {/* ... stairs scene JSX using makeChoice ... */}
                 <p className="game-text">
                   🐱 You see a **Cute Cat** on the stairs. What do you do?
                 </p>
                 <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Give-biscuit-cat.jpeg" alt="give" className="choice-image" />
+                    <img
+                      src="/assets/images/Give-biscuit-cat.jpeg"
+                      alt="give"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -330,7 +362,11 @@ function Game() {
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img src="/assets/images/Dontgive-biscuit-cat.jpeg" alt="dont" className="choice-image" />
+                    <img
+                      src="/assets/images/Dontgive-biscuit-cat.jpeg"
+                      alt="dont"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -345,7 +381,7 @@ function Game() {
             )}
             {scene === "watchman" && (
               <>
-                 {/* ... watchman scene JSX using makeChoice ... */}
+                {/* ... watchman scene JSX using makeChoice ... */}
                 <p className="game-text">
                   👮 Watchman slowly walks towards you....
                 </p>
@@ -361,22 +397,30 @@ function Game() {
             )}
             {scene === "catAngry" && (
               <>
-                 {/* ... catAngry scene JSX using makeChoice ... */}
+                {/* ... catAngry scene JSX using makeChoice ... */}
                 <p className="game-text">🐱 You Find Cat staring at you...</p>
                 <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Petting-cat.jpeg" alt="pet" className="choice-image" />
+                    <img
+                      src="/assets/images/Petting-cat.jpeg"
+                      alt="pet"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
                       onMouseLeave={handleChoiceMouseLeave}
-                      onClick={() => makeChoice("gameOver2", true)} // Game Over here
+                      onClick={() => setScene("gameOver2", true)} // Game Over here
                     >
                       🐾 Pet the Cat
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img src="/assets/images/Jump-over-cat.jpeg" alt="jump" className="choice-image" />
+                    <img
+                      src="/assets/images/Jump-over-cat.jpeg"
+                      alt="jump"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -391,13 +435,17 @@ function Game() {
             )}
             {scene === "biscuitremains" && (
               <>
-                 {/* ... biscuitremains scene JSX using makeChoice ... */}
+                {/* ... biscuitremains scene JSX using makeChoice ... */}
                 <p className="game-text">
                   🐱 The cat stares at you. Do you try to pet it or move past?
                 </p>
                 <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Cat-appears.jpeg" alt="Pet" className="choice-image" />
+                    <img
+                      src="/assets/images/Cat-appears.jpeg"
+                      alt="Pet"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -408,12 +456,17 @@ function Game() {
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img src="/assets/images/Jump-over-cat.jpeg" alt="Jump" className="choice-image" />
+                    <img
+                      src="/assets/images/Jump-over-cat.jpeg"
+                      alt="Jump"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
                       onMouseLeave={handleChoiceMouseLeave}
-                      onClick={() => makeChoice("climb-Up", false)} >
+                      onClick={() => makeChoice("climb-Up", false)}
+                    >
                       🏃 Jump over the Cat
                     </button>
                   </div>
@@ -422,13 +475,17 @@ function Game() {
             )}
             {scene === "ghostchoice" && (
               <>
-                 {/* ... ghostchoice scene JSX using makeChoice ... */}
+                {/* ... ghostchoice scene JSX using makeChoice ... */}
                 <p className="game-text">
                   👻 A ghost Appears...What will you do?
                 </p>
                 <div className="choice-container">
                   <div className="choice-option">
-                    <img src="/assets/images/Give-biscuit-ghost.jpeg" alt="Give biscuit" className="choice-image" />
+                    <img
+                      src="/assets/images/Give-biscuit-ghost.jpeg"
+                      alt="Give biscuit"
+                      className="choice-image"
+                    />
                     <button
                       className="game-button"
                       onMouseEnter={handleChoiceMouseEnter}
@@ -439,10 +496,10 @@ function Game() {
                     </button>
                   </div>
                   <div className="choice-option">
-                    <img 
+                    <img
                       src="/assets/images/Dontgive-biscuit-ghost.jpeg"
-                      alt="Attack ghost" 
-                      className="choice-image" 
+                      alt="Attack ghost"
+                      className="choice-image"
                     />
                     <button
                       className="game-button"
@@ -450,7 +507,7 @@ function Game() {
                       onMouseLeave={handleChoiceMouseLeave}
                       onClick={() => makeChoice("gameOver2", true)}
                     >
-                      ⚔️ Attack the Ghost
+                      🍪 Hide the Biscuit
                     </button>
                   </div>
                 </div>
@@ -500,11 +557,14 @@ function Game() {
               </>
             )}
 
-            {/* Game Over and Win Scenes */} 
+            {/* Game Over and Win Scenes */}
             {scene === "gameOver1" && (
               <>
                 <video autoPlay muted className="game-over-video">
-                  <source src="/assets/videos/watchman-g.mp4" type="video/mp4" />
+                  <source
+                    src="/assets/videos/watchman-g.mp4"
+                    type="video/mp4"
+                  />
                   Your browser does not support the video tag.
                 </video>
                 <p className="game-text-gameover">
@@ -558,9 +618,11 @@ function Game() {
                 </button>
               </>
             )}
-          </div> {/* End of scene-content */} 
+          </div>{" "}
+          {/* End of scene-content */}
         </div> /* End of game-content */
-      )} {/* End of conditional rendering for !transitioning */}
+      )}{" "}
+      {/* End of conditional rendering for !transitioning */}
     </div>
   );
 }
