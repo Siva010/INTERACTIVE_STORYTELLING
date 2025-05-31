@@ -1,0 +1,606 @@
+.game-text {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  font-size: large;
+  text-align: center;
+}
+.game-message {
+  border: 10px solid rgb(41, 41, 41);
+  padding: 20px;
+  font-size: large;
+  letter-spacing: 1px;
+  margin: 10px;
+}
+body {
+  background-image: url("/assets/images/game-bg.png");
+  background-color: rgb(54, 54, 54);
+}
+
+.game-container {
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative; /* Needed for pseudo-element positioning */
+  overflow: hidden; /* Hide anything shaking out of bounds */
+  transition: transform 0.1s ease-in-out; /* Smooth out shake start/end */
+}
+
+/* Vignette Pseudo-element */
+.game-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 90%);
+  opacity: 0;
+  pointer-events: none; /* Allow clicks through */
+  transition: opacity 0.3s ease-in-out;
+  z-index: 5; /* Position below transition overlay but above content */
+}
+
+/* Intense Hover Styles */
+.game-container.intense-hover-active {
+   /* Trigger animation */
+   animation: intense-shake 0.15s linear infinite alternate;
+}
+
+.game-container.intense-hover-active::before {
+  /* Make vignette visible */
+  opacity: 1;
+}
+
+/* Screen Shake Animation */
+@keyframes intense-shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  25% { transform: translate(-1px, -1px) rotate(-0.1deg); }
+  50% { transform: translate(-1px, 1px) rotate(0.1deg); }
+  75% { transform: translate(1px, -1px) rotate(0.1deg); }
+  100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+.game-content {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  animation: fadeInFromBlack 0.5s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInFromBlack {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.message-box {
+  border: 10px solid rgb(0, 0, 0);
+  font-size: large; /* Consistent font size */
+  padding: 30px;
+  letter-spacing: 3px; /* Adjust spacing between letters */
+  word-spacing: 10px; /* Adjust spacing between words */
+  line-height: 1.6; /* Increase line height for better readability */
+  width: 90%; /* Consistent width */
+  max-width: 1000px; /* Prevents it from being too wide */
+  margin: 0 auto;
+}
+@keyframes floaty {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Message buttons */
+.game-button1 {
+  font-family: "Press Start 2P", cursive;
+  background-color: rgb(107, 107, 107);
+  height: auto;
+  min-height: 50px;
+  width: 90%;
+  max-width: 900px;
+  font-size: large;
+  color: white;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: 3px solid rgb(136, 136, 136);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.game-button1:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+.game-button {
+  font-family: "Press Start 2P", cursive;
+  background-color: red;
+  height: auto;
+  min-height: 50px;
+  width: 90%;
+  max-width: 700px;
+  font-size: 20px;
+  color: white;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: 3px solid rgb(41, 0, 0);
+  text-align: center;
+}
+
+/* Hover Effect - Floaty Animation */
+.game-button:hover {
+  background-color: darkred;
+  animation: floaty 0.6s ease-in-out infinite;
+}
+
+/* Remove float styles for images - Rely on flexbox in .scene-image-container */
+/* .left-image {
+  float: left;
+  margin-right: 120px;
+  width: 40%;
+  height: 600px;
+  border: 10px solid rgb(39, 39, 39);
+  border-radius: 10px;
+}
+
+.right-image {
+  float: right;
+  margin-left: 120px;
+  width: 40%;
+  height: 600px;
+  border: 10px solid rgb(39, 39, 39);
+  border-radius: 10px;
+} */
+
+.button-container {
+  display: flex;
+  flex-direction: row; /* Buttons side-by-side on desktop */
+  justify-content: center;
+  gap: 20px; /* Add space between buttons */
+  margin-top: 20px; /* Add space above buttons */
+}
+.scene-image-container {
+  display: flex;
+  flex-direction: row; /* Default to horizontal layout for desktop */
+  justify-content: space-around; /* Distribute space around items */
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto; /* Added top/bottom margin */
+  padding: 20px 0;
+  gap: 20px;
+}
+
+.left-image,
+.right-image {
+  width: 45%; /* Adjust width for side-by-side display */
+  max-width: 500px;
+  height: auto;
+  margin: 0; /* Reset margin for row layout */
+  border: 10px solid rgb(39, 39, 39);
+  border-radius: 10px;
+}
+
+/* Scene Transition Overlay */
+.transition-overlay {
+  position: fixed; /* Cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000; /* Black background */
+  z-index: 100; /* Ensure it's above game content but below potential modals */
+  opacity: 0;
+  animation: fadeToBlack 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeToBlack {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image-container {
+  position: relative; /* This makes the tooltip position relative to this container */
+  display: inline-block; /* Ensures the tooltip stays with the image */
+}
+
+.tooltip {
+  position: absolute; /* Now relative to `.image-container` */
+  bottom: 100%; /* Puts the tooltip **above** the image */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the tooltip */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.image-container:hover .tooltip {
+  opacity: 1; /* Show tooltip when hovering over image */
+}
+
+.game-over-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.game-over-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.game-over-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+.game-text-gameover {
+  font-size: 2.5em;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px darkred;
+}
+.game-button-gameover {
+  font-family: "Press Start 2P", cursive;
+  background-color: red;
+  height: auto;
+  min-height: 50px;
+  width: 90%;
+  max-width: 700px;
+  font-size: 20px;
+  color: white;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: 3px solid rgb(41, 0, 0);
+  text-align: center;
+}
+
+.game-text-win {
+  font-size: 2.5em;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 0 0 10px rgb(0, 162, 255), 0 0 20px rgb(38, 0, 255),
+    0 0 30px rgb(0, 21, 139);
+}
+.game-button-win {
+  font-family: "Press Start 2P", cursive;
+  background-color: red;
+  height: auto;
+  min-height: 50px;
+  width: 90%;
+  max-width: 700px;
+  font-size: 20px;
+  color: white;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: 3px solid rgb(41, 0, 0);
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .game-text {
+    font-size: 1.1rem;
+    padding: 15px;
+  }
+  .game-message {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+  .game-button1,
+  .game-button {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+  .game-text-gameover,
+  .game-text-win {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 15px; /* Slightly reduce padding */
+  }
+  .game-text {
+    font-size: 1rem;
+    padding: 10px; /* Reduce padding */
+  }
+  .game-message {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 5px; /* Reduce margin */
+  }
+  .game-button1,
+  .game-button {
+    font-size: 0.85rem; /* Adjust font size */
+    padding: 10px 15px; /* Adjust padding */
+    width: 85%; /* Slightly reduce width */
+  }
+  .game-text-gameover,
+  .game-text-win {
+    font-size: 1.6em; /* Adjust font size */
+    padding: 0 15px;
+  }
+  .game-button-gameover,
+  .game-button-win {
+    width: 85%;
+    font-size: 0.85rem;
+  }
+  .scene-image-container {
+      flex-direction: column;
+      gap: 10px; /* Reduce gap */
+  }
+  .left-image,
+  .right-image {
+    width: 90%;
+    max-height: 35vh; /* Limit image height */
+    object-fit: cover; /* Ensure image covers space */
+    margin: 5px 0; /* Adjust vertical margin */
+    border-width: 5px; /* Reduce border */
+  }
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px; /* Adjust top margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 10px;
+  }
+  .game-text {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  .game-message {
+    padding: 8px;
+    font-size: 0.9rem;
+    margin: 3px;
+  }
+  .game-button1,
+  .game-button {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    width: 90%; /* Can be slightly wider on smaller screens */
+  }
+  .game-text-gameover,
+  .game-text-win {
+    font-size: 1.4em;
+  }
+  .game-button-gameover,
+  .game-button-win {
+    font-size: 0.8rem;
+    width: 90%;
+  }
+  .left-image,
+  .right-image {
+    width: 95%;
+    max-height: 30vh; /* Further limit height */
+    margin: 3px 0;
+    border-width: 4px;
+  }
+   .button-container {
+    gap: 8px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  /* Styles for very small screens can be added if needed */
+  .game-text {
+      font-size: 0.8rem;
+  }
+  .game-message {
+      font-size: 0.8rem;
+  }
+  .game-button1,
+  .game-button {
+      font-size: 0.7rem;
+      padding: 6px 10px;
+  }
+  .game-text-gameover,
+  .game-text-win {
+      font-size: 1.2em;
+  }
+   .left-image,
+  .right-image {
+    max-height: 25vh; /* Even smaller height */
+  }
+}
+
+/* New Styles for Image + Button Grouping */
+.choice-container { 
+  display: flex;
+  flex-direction: row; /* Desktop: side-by-side */
+  justify-content: space-around;
+  align-items: flex-start; /* Align options to the top */
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.choice-option { /* Container for one image + button */
+  display: flex;
+  flex-direction: column; /* Image above button */
+  align-items: center; /* Center items horizontally */
+  width: 45%; /* Each option takes roughly half the space */
+  gap: 15px; /* Space between image and button */
+}
+
+.choice-image { /* Common class for choice images */
+  width: 100%; /* Image takes full width of its container */
+  max-width: 500px; 
+  height: auto;
+  max-height: 60vh; 
+  border: 10px solid rgb(39, 39, 39);
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.game-button { 
+  /* Keep existing button styles, but adjust width if needed */
+  font-family: "Press Start 2P", cursive;
+  background-color: red;
+  height: auto;
+  min-height: 50px;
+  width: 90%; /* Button width relative to its choice-option container */
+  max-width: 400px; /* Add a max-width for larger screens */
+  font-size: 20px;
+  color: white;
+  display: block;
+  margin: 0 auto 10px auto; /* Center button and add bottom margin */
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: 3px solid rgb(41, 0, 0);
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  /* Adjustments for large tablets if needed */
+  .choice-image {
+      max-height: 50vh;
+  }
+  .game-button {
+      font-size: 18px; /* Slightly smaller button text */
+      max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Remove old styles targeting .scene-image-container, .left-image, */
+  /* .right-image, .button-container within this media query */
+
+  .choice-container {
+    flex-direction: column; /* Mobile: stack options */
+    align-items: center; /* Center options when stacked */
+    gap: 15px; /* Adjust gap for stacked layout */
+  }
+
+  .choice-option {
+    width: 90%; /* Options take more width when stacked */
+    gap: 10px; /* Reduce gap between image and button */
+  }
+
+  .choice-image {
+    max-height: 35vh; 
+    border-width: 5px; 
+  }
+
+  .game-button {
+     width: 85%; 
+     font-size: 0.85rem;
+     padding: 10px 15px;
+     max-width: 90%; /* Ensure button doesn't exceed container */
+  }
+  
+  /* Other mobile adjustments from previous steps */
+  .game-container { padding: 15px; }
+  .game-text { font-size: 1rem; padding: 10px; }
+  .game-message { padding: 10px; font-size: 1rem; margin: 5px; }
+  .game-button1 { font-size: 0.85rem; padding: 10px 15px; width: 85%; }
+  .game-text-gameover, .game-text-win { font-size: 1.6em; padding: 0 15px; }
+  .game-button-gameover, .game-button-win { width: 85%; font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+  /* Remove old styles targeting .scene-image-container, .left-image, */
+  /* .right-image, .button-container within this media query */
+
+  .choice-option {
+    width: 95%;
+  }
+  .choice-image {
+    max-height: 30vh;
+    border-width: 4px;
+  }
+   .game-button {
+     width: 90%;
+     font-size: 0.8rem;
+     padding: 8px 12px;
+  }
+
+  /* Other mobile adjustments from previous steps */
+  .game-container { padding: 10px; }
+  .game-text { font-size: 0.9rem; padding: 8px; }
+  .game-message { padding: 8px; font-size: 0.9rem; margin: 3px; }
+  .game-button1 { font-size: 0.8rem; padding: 8px 12px; width: 90%; }
+  .game-text-gameover, .game-text-win { font-size: 1.4em; }
+  .game-button-gameover, .game-button-win { font-size: 0.8rem; width: 90%; }
+}
+
+@media (max-width: 320px) {
+  /* Remove old styles targeting .scene-image-container, .left-image, */
+  /* .right-image, .button-container within this media query */
+
+   .choice-image {
+    max-height: 25vh; 
+  }
+   .game-button {
+      font-size: 0.7rem;
+      padding: 6px 10px;
+  }
+
+  /* Other mobile adjustments from previous steps */
+  .game-text { font-size: 0.8rem; }
+  .game-message { font-size: 0.8rem; }
+  .game-button1 { font-size: 0.7rem; padding: 6px 10px; }
+  .game-text-gameover, .game-text-win { font-size: 1.2em; }
+}
