@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Inter", "sans-serif";
+  --breakpoint 3xl: 1920px;
+  --color-primary: #6366f1;
+  --color-secondary: #4f46e5;
+  --color-accent: #818cf8;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-display);
+    }
+    body {
+        background: linear-gradient(135deg, #f5f7ff 0%, #f0f4ff 100%);
+        overflow-x: hidden;
+    }
+}
+
+.input-box {
+    @apply w-full flex justify-between gap-3 text-sm text-gray-700 
+           bg-white/80 backdrop-blur-sm rounded-lg px-4 py-3 mb-4 mt-3 
+           border border-indigo-100/50 outline-none 
+           focus:ring-2 focus:ring-indigo-200/50 focus:border-indigo-300/50 
+           transition-all duration-200; 
+} 
+
+.btn-primary { 
+    @apply w-full text-sm font-medium text-white 
+           bg-gradient-to-r from-indigo-500 to-indigo-600 
+           shadow-lg shadow-indigo-500/20 p-[10px] rounded-lg my-1 
+           hover:from-indigo-600 hover:to-indigo-700 
+           active:scale-[0.98] transition-all duration-200 
+           cursor-pointer; 
+} 
+ 
+.card { 
+    @apply bg-white/90 backdrop-blur-sm p-6 rounded-2xl 
+           shadow-lg shadow-indigo-100/50 border border-indigo-100/30 
+           hover:shadow-xl hover:shadow-indigo-200/30 
+           transition-all duration-300; 
+} 
+
+.card-btn {
+    @apply flex items-center gap-3 text-[13px] font-medium text-gray-600 
+           hover:text-indigo-600 bg-gray-50/80 hover:bg-indigo-50/80 
+           px-4 py-2 rounded-lg border border-gray-200/50 
+           hover:border-indigo-200/50 cursor-pointer
+           transition-all duration-200;
+}
+
+/* New utility classes */
+.glass-effect {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+}
+
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400;
+}
+
+.hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-indigo-200 rounded-full hover:bg-indigo-300 transition-colors;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes coin-spin {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+.animate-coin-spin {
+  animation: coin-spin 4s linear infinite;
+}
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2.5s infinite;
+}
+@keyframes text-pop {
+  0% { letter-spacing: -0.1em; opacity: 0; transform: scale(0.95); }
+  100% { letter-spacing: 0; opacity: 1; transform: scale(1); }
+}
+.animate-text-pop {
+  animation: text-pop 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 1.2s ease both;
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+  
